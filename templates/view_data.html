@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="d-flex">
+  <!-- Sidebar -->
+  <div class="bg-dark text-white p-4" style="width: 250px; height: 100vh">
+    <h2 class="h4 text-center mb-4">Admin Dashboard</h2>
+    <ul class="nav flex-column">
+      <li class="nav-item mb-3">
+        <a href="{% url 'home' %}" class="nav-link text-white">Home</a>
+      </li>
+      <li class="nav-item mb-3">
+        <a href="{% url 'create_post' %}" class="nav-link text-white"
+          >Add New Post</a
+        >
+      </li>
+      <li class="nav-item mb-3">
+        <a href="{% url 'view_data' %}" class="nav-link text-white"
+          >View Data</a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Content (Data Table) -->
+  <div class="flex-grow-1 p-4">
+    <h2 class="h3 text-center mb-4">Manage Your Dashboard</h2>
+
+    <!-- Data Table -->
+    <table class="table table-bordered">
+      <thead class="table-success">
+        <tr>
+          <th class="text-center">S.N</th>
+          <th class="text-center">Featured Image</th>
+          <th class="text-center">Title</th>
+          <th class="text-center">Category</th>
+          <th class="text-center">Tags</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for post in posts %}
+        <tr class="table-hover">
+          <td class="text-center">{{ forloop.counter }}</td>
+          <td class="text-center">
+            <img
+              src="{{ post.featured_image.url }}"
+              class="img-thumbnail"
+              style="width: 80px; height: 80px"
+            />
+          </td>
+          <td class="text-center">{{ post.title }}</td>
+          <td class="text-center">{{ post.category }}</td>
+          <td class="text-center">{{ post.tags }}</td>
+          <td class="text-center">
+            <a
+              href="{% url 'update_post' post.id %}"
+              class="btn btn-warning btn-sm mx-1"
+              >Edit</a
+            >
+            <a
+              href="{% url 'delete_post' post.id %}"
+              class="btn btn-danger btn-sm mx-1"
+              >Delete</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

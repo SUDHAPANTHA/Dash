@@ -1,0 +1,122 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="d-flex align-items-center justify-content-center vh-100">
+  <div class="card shadow-lg p-4" style="max-width: 600px; width: 100%">
+    <!-- Title -->
+    <h1 class="text-center fw-bold text-primary">Create a New Post</h1>
+
+    <!-- Form -->
+    <form
+      method="POST"
+      enctype="multipart/form-data"
+      action="{% url 'create_post' %}"
+      class="mt-4"
+    >
+      {% csrf_token %}
+
+      <!-- Title Field -->
+      <div class="mb-3">
+        <label for="title" class="form-label fw-semibold">Post Title</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          class="form-control"
+          placeholder="Enter post title"
+          required
+        />
+      </div>
+
+      <!-- Category Selection with Radio Buttons -->
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Category</label>
+        <div class="form-check">
+          <input
+            type="radio"
+            name="category"
+            value="Technology"
+            id="category_technology"
+            class="form-check-input"
+            required
+          />
+          <label for="category_technology" class="form-check-label"
+            >Technology</label
+          >
+        </div>
+        <div class="form-check">
+          <input
+            type="radio"
+            name="category"
+            value="Health"
+            id="category_health"
+            class="form-check-input"
+            required
+          />
+          <label for="category_health" class="form-check-label">Health</label>
+        </div>
+        <div class="form-check">
+          <input
+            type="radio"
+            name="category"
+            value="Education"
+            id="category_education"
+            class="form-check-input"
+            required
+          />
+          <label for="category_education" class="form-check-label"
+            >Education</label
+          >
+        </div>
+        <div class="form-check">
+          <input
+            type="radio"
+            name="category"
+            value="Entertainment"
+            id="category_entertainment"
+            class="form-check-input"
+            required
+          />
+          <label for="category_entertainment" class="form-check-label"
+            >Entertainment</label
+          >
+        </div>
+      </div>
+
+      <!-- Tags Input -->
+      <div class="mb-3">
+        <label for="tags" class="form-label fw-semibold"
+          >Tags (comma separated)</label
+        >
+        <input
+          type="text"
+          name="tags"
+          id="tags"
+          class="form-control"
+          placeholder="e.g. python, ai, webdev"
+        />
+      </div>
+
+      <!-- Featured Image Upload -->
+      <div class="mb-3">
+        <label for="featured_image" class="form-label fw-semibold"
+          >Featured Image</label
+        >
+        <input
+          type="file"
+          name="featured_image"
+          id="featured_image"
+          class="form-control"
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary btn-lg px-4">
+          <i class="bi bi-upload"></i> Create Post
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

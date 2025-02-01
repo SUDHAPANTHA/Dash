@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% block content %}
+<!-- If the user is authenticated, show the sidebar -->
+{% if user.is_authenticated %}
+<div class="d-flex">
+  <!-- Sidebar -->
+  <div class="bg-dark text-white p-4 vh-100" style="width: 250px">
+    <h2 class="h4 text-center mb-4">Admin Dashboard</h2>
+    <ul class="nav flex-column">
+      <li class="nav-item mb-2">
+        <a href="{% url 'home' %}" class="nav-link text-light">🏠 Home</a>
+      </li>
+      <li class="nav-item mb-2">
+        <a href="{% url 'create_post' %}" class="nav-link text-light"
+          >📝 Add New Post</a
+        >
+      </li>
+      <li class="nav-item">
+        <a href="{% url 'view_data' %}" class="nav-link text-light"
+          >📊 View Data</a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container-fluid p-4">
+    <h1 class="display-6">Welcome to Your Dashboard</h1>
+    <p class="lead">Manage your application with ease.</p>
+  </div>
+</div>
+
+{% else %}
+<!-- If the user is not authenticated, show a login prompt -->
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="text-center">
+    <h1 class="display-5 fw-bold">
+      You need to log in to access the dashboard
+    </h1>
+    <a href="{% url 'login' %}" class="btn btn-primary btn-lg mt-3">Login</a>
+  </div>
+</div>
+{% endif %} {% endblock %}
